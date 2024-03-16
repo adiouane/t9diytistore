@@ -1,5 +1,7 @@
 import React from 'react'
 import { Metadata } from 'next'
+// import font Noto Kufi Arabic from google fonts
+import { Noto_Kufi_Arabic } from 'next/font/google'
 
 import { AdminBar } from './_components/AdminBar'
 import { Footer } from './_components/Footer'
@@ -10,6 +12,16 @@ import { mergeOpenGraph } from './_utilities/mergeOpenGraph'
 
 import './_css/app.scss'
 
+const NotoKufiArabic = Noto_Kufi_Arabic(
+  {
+    subsets: ['arabic'],
+    display: 'swap',
+    weight: ['400', '700'],
+    variable: '--noto-kufi-arabic'
+
+  }
+)
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -18,12 +30,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link rel="icon" href="/favicon.ico" sizes="32x32" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
-      <body>
+      <body className={NotoKufiArabic.variable}>
         <Providers>
           <AdminBar />
           {/* @ts-expect-error */}
           <Header />
-          {children}
+          <main className='main'>{children}</main>
           {/* @ts-expect-error */}
           <Footer />
         </Providers>

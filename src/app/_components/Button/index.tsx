@@ -16,6 +16,7 @@ export type Props = {
   type?: 'submit' | 'button'
   disabled?: boolean
   invert?: boolean
+  children?: React.ReactNode
 }
 
 export const Button: React.FC<Props> = ({
@@ -28,7 +29,7 @@ export const Button: React.FC<Props> = ({
   onClick,
   type = 'button',
   disabled,
-  invert,
+  invert,  
 }) => {
   let el = elFromProps
 
